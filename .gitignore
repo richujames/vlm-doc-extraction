@@ -1,0 +1,28 @@
+# data — never commit SROIE or derived splits
+data/
+!data/.gitkeep
+
+# model outputs
+outputs/
+*.safetensors
+*.bin
+checkpoint-*/
+
+# results: keep summaries + records, they're small and they're the point.
+# ignore only bulky artifacts.
+results/**/*.png
+!results/*.json
+!results/*.jsonl
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# tracking
+wandb/
+
+# os
+.DS_Store

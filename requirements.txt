@@ -1,0 +1,24 @@
+# Qwen3-VL requires transformers >= 4.57 (older versions raise
+# "model type qwen3_vl but Transformers does not recognize this architecture").
+# If pip resolves something older, install from git:
+#   pip install git+https://github.com/huggingface/transformers
+transformers>=4.57.0
+torch>=2.1.0
+peft>=0.13.0
+trl>=0.12.0
+bitsandbytes>=0.44.0
+accelerate>=1.0.0
+qwen-vl-utils>=0.0.8
+
+pillow>=10.0.0
+numpy>=1.24.0
+pyyaml>=6.0
+
+# tracking + analysis
+wandb>=0.18.0
+pandas>=2.0.0
+matplotlib>=3.7.0
+
+# NOT INCLUDED ON PURPOSE: flash-attn.
+# Pre-built wheels don't cover every CUDA/torch combination and pip falls back
+# to a 20+ minute source compile that frequently fails. Unnecessary at 2B.
