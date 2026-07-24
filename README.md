@@ -1,28 +1,8 @@
 # Document Field Extraction with a QLoRA Fine-Tuned Vision-Language Model
 
-<!--
-  ============================================================================
-  TEMPLATE NOTES — DELETE THIS BLOCK BEFORE PUBLISHING
-  ============================================================================
-  Every `[FILL: ...]` is a gap you must close with a real number, name, or
-  observation. Do not publish with any left in place.
 
-  If an experiment didn't happen, DELETE the section rather than inventing a
-  result. An empty README with three honest numbers beats a full one with
-  three invented ones — and an interviewer will find the invented ones by
-  asking "how did you measure that?"
-
-  Fill order that saves the most time:
-    1. Method + Setup (you know these before training finishes)
-    2. Evaluation protocol (write this BEFORE you look at results — it stops
-       you from quietly redefining the metric to flatter the outcome)
-    3. Results tables
-    4. Failure analysis + Limitations  <-- highest value per word. Do not skip.
-  ============================================================================
--->
-
-Fine-tuning `[FILL: Qwen3-VL-2B-Instruct]` with 4-bit QLoRA for structured field
-extraction from `[FILL: receipt]` images, evaluated on both clean inputs and a
+Fine-tuning Qwen3-VL-2B-Instruct with 4-bit QLoRA for structured field
+extraction from receipt images, evaluated on both clean inputs and a
 deliberately degraded split that simulates real-world capture conditions.
 
 **Headline result:** field-level exact match improved from `[FILL: X]`% to
