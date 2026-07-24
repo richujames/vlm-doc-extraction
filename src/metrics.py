@@ -1,26 +1,3 @@
-"""
-Scoring for document field extraction.
-
-Two metrics, deliberately chosen to disagree with each other:
-
-  exact_match  — normalised string equality. Brutal: one wrong character is a
-                 total miss. Good for `date` and `total` where partial credit
-                 is meaningless.
-
-  ANLS         — Average Normalized Levenshtein Similarity. Gives partial
-                 credit, thresholded so that a badly-wrong answer still scores
-                 zero. Good for `address`, where exact match punishes a single
-                 OCR slip in a 60-character string as harshly as complete
-                 failure.
-
-Reporting both is the point. If they diverge sharply on a field, that tells you
-the model is *nearly* right there — which is a different problem from being
-wrong, and needs a different fix.
-
-This file is complete. You should not need to edit it, but you SHOULD read
-`normalize()` carefully and decide whether you agree with its choices, because
-normalisation silently determines your headline number.
-"""
 
 from __future__ import annotations
 

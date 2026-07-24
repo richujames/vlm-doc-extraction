@@ -1,0 +1,53 @@
+# LOCAL SMOKE TEST — not a result-producing config.
+#
+# Purpose: validate that your data pipeline, collator, label masking, and
+# trainer wiring actually work, on hardware too small for the real model.
+# A tiny model that trains for 20 steps proves the plumbing. It proves nothing
+# about accuracy, and its numbers must never appear in your README.
+#
+# Fits roughly 4GB VRAM / 8GB system RAM. If this OOMs, your real run
+# definitely will, and you have learned that for free instead of after
+# 40 minutes of Colab time.
+#
+#   python src/train.py --config configs/smoke_local.yaml --overfit-test
+#
+# Once this passes locally, run the real configs on Colab/Kaggle unchanged.
+
+name: smoke_local
+
+model_id: HuggingFaceTB/SmolVLM-256M-Instruct   # ~0.25B; overrides the default
+
+lora:
+  r: 8
+  alpha: 16
+  dropout: 0.05
+  freeze_vision: true
+  target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+
+training:
+  seed: 42
+  epochs: 1
+  per_device_batch_size: 1
+  gradient_accumulation_steps: 4
+  learning_rate: 2.0e-4
+  lr_scheduler: cosine
+  warmup_ratio: 0.03
+  weight_decay: 0.0
+  optim: paged_adamw_8bit
+  gradient_checkpointing: true
+  # RTX 3050 is Ampere (SM 8.6) and DOES support bf16 — unlike Colab's T4.
+  bf16: true
+  fp16: false
+  max_grad_norm: 0.3
+  logging_steps: 5
+  save_steps: 1000
+
+data:
+  max_pixels: 200704    # ~448x448. Aggressive: image tokens are the OOM driver.
+  max_seq_length: 640
+
+output_dir: outputs/smoke_local
