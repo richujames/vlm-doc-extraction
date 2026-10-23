@@ -22,5 +22,3 @@ pyyaml>=6.0
 # to a 20+ minute source compile that frequently fails. Unnecessary at 2B.
 #execute following commands to configure the ai agents to work along with the extractor
 python -c "import asyncio; from google.antigravity import Agent, LocalAgentConfig; async def test(): async with Agent(LocalAgentConfig()) as a: res = await a.chat('Hello'); print(await res.text()); asyncio.run(test())"
-
-Copy-Item -Path "C:\ProgramData\Perplexity\Sandbox\" -Destination "C:\Users\Hash\Desktop"
